@@ -1,5 +1,6 @@
-*.avi
-*.ini
+**.avi
+**.ini
+**.txt
 test.py
 average.py
 galayos.py

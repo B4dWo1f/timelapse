@@ -49,8 +49,14 @@ def get_parameters(ini):
    return pheno, duration, fps, method, inp, f_tmp, v_name
 
 
-ini = 'galayos.ini'
-ini = 'webcam.ini'
+import sys
+try: ini = sys.argv[1]
+except IndexError:
+   print('Input file not specified')
+   exit()
+
+#ini = 'galayos.ini'
+#ini = 'webcam.ini'
 pheno, duration, fps, method, inp, f_tmp, video_name = get_parameters(ini)
 
 Nframes = int(duration * fps)
@@ -61,7 +67,6 @@ print('waiting %ss between them'%(tsleep))
 
 for i in tqdm(range(Nframes), unit='Frames'):
    fname = here+'/frame_%s.jpg'%(i)
-   #a,b = urlretrieve(url, fname)
    method(fname,inp)
    with open(f_tmp,'a') as f:
       f.write(fname+'\n')
